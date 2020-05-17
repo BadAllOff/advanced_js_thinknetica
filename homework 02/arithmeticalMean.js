@@ -8,18 +8,18 @@
 let numbersArray = Array();
 
 function arithmeticalMean() {
-  let inputNumber = prompt('Введите число');
+  let inputNumber = Number(prompt('Введите число'));
   let sum;
   let arMean;
 
   if (inputNumber) {
-    numbersArray.push(Number(inputNumber));
+    numbersArray.push(inputNumber);
     sum = numbersArray.reduce((a, b) => a + b);
-    arMean = sum / 2;
+    arMean = sum / numbersArray.length;
     displayResult(sum, numbersArray.length, arMean, true);
   }else{
     sum = numbersArray.reduce((a, b) => a + b);
-    arMean = sum / 2;
+    arMean = sum / numbersArray.length;
     displayResult(sum, numbersArray.length, arMean);
   }
 };
