@@ -8,50 +8,44 @@
  * “34:67” - выдать ошибку 
  */
 
- // Подсмотрел у коллеги но нашёл ошибки в регулярке и обработке данных выше.
- // Например дата "03.2 pm" выдавала ошибку
+// Подсмотрел у коллеги но нашёл ошибки в регулярке и обработке данных выше.
+// Например дата "03.2 pm" выдавала ошибку
 
 function timeConverter() {
 
-  let inputTime = prompt('Введите время:').trim().toLocaleLowerCase();
-  inputTime = inputTime;
-  const time = inputTime.match(/([0-9]+)/g);
-  // const timePeriod = inputTime.match(/[amp]+/g); будет принимать так же значение "apm" - что неверно.
-  const timePeriod = inputTime.match(/[ap][m]/g);
-  
-  let hour = parseInt(time[0]);
-  let min = parseInt(time[1]);
-  
-  if (timePeriod === null) {
-      if (hour >= 0 &&
-          hour <= 24 &&
-          min >= 0 &&
-          min <= 59) {
-          if (String(hour).length === 1) hour = '0' + hour
-          if (String(min).length === 1) min = '0' + min
-          console.log(`Время: ${hour}:${min}`)
-      } else {
-          console.log('Время указано не верно')
-      }
-  } else {
-  console.log(timePeriod);
+    let inputTime = prompt('Введите время:').trim().toLocaleLowerCase();
+    inputTime = inputTime;
+    const time = inputTime.match(/([0-9]+)/g);
+    // const timePeriod = inputTime.match(/[amp]+/g); будет принимать так же значение "apm" - что неверно.
+    const timePeriod = inputTime.match(/[ap][pm]/g);
 
-      if (timePeriod[0] === 'pm' &&
-          hour < 24 &&
-          min >= 0 &&
-          min <= 59) {
-          if(hour <=11) {hour = hour+12}
-          if (String(min).length === 1) min = '0' + min
-          console.log(`Время: ${hour}:${min}`)
-      } else if (timePeriod[0] === 'am' &&
-          hour <= 12 &&
-          hour >= 0 &&
-          min >= 0 &&
-          min <= 59) {
-          if (String(min).length === 1) min = '0' + min
-          if (String(hour).length === 1) hour = '0' + hour
-          console.log(`Время: ${hour}:${min}`)
-      } else console.log('Не верно указано время')
-  }
-  
+    let hour = parseInt(time[0]);
+    let min = parseInt(time[1]);
+
+    if (timePeriod === null) {
+        if (hour >= 0 && hour <= 24 && min >= 0 && min <= 59) {
+            displayTime(hour, min);
+        } else {
+            console.log('Время указано не верно')
+        }
+    } else {
+        if (hour <= 12 && hour >= 0 && min >= 0 && min <= 59) {
+            displayTime(hour, min, timePeriod);
+        } else {
+            console.log('Не верно указано время')
+        }
+    }
+};
+
+function displayTime(hour, min, timePeriod = false) {
+    if (timePeriod[0] === 'pm') {
+        hour == 12 ? hour = 0 : hour = hour + 12;
+    } else if (timePeriod[0] === 'am') {
+        hour == 12 ? hour = 0 : hour;
+    }
+
+    if (String(hour).length === 1) hour = '0' + hour
+    if (String(min).length === 1) min = '0' + min
+
+    console.log(`Время: ${hour}:${min}`)
 };
