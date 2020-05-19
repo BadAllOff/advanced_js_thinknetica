@@ -11,11 +11,9 @@
 let printRow = [];
 
 function printMultiplicationTable() {
-  for(let rows = 1; rows <= 9; rows++)
-  {
-    for(let columns = 1; columns <= 9; columns++)
-    {
-      printRow.push(rows*columns);
+  for (let rows = 1; rows <= 9; rows++) {
+    for (let columns = 1; columns <= 9; columns++) {
+      printRow.push(rows * columns);
     }
     console.log(printRow.join(' | '));
     printRow = [];

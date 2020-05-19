@@ -10,18 +10,18 @@
  * The syntax of Java is largely influenced by C++. Unlike C++, JS does not support operator overloading. Java uses comments similar to those of C++ 
  */
 
-function wordReplacement(){
-  
-  let originalText = prompt('Пожалуйста введите текст:');
-  let result = []; 
+function wordReplacement() {
 
-  originalText.split(/[.?!]/).filter(function(n) {
-    if (/overloading/i.test(n)){
+  let originalText = prompt('Пожалуйста введите текст:');
+  let result = [];
+
+  originalText.split(/[.?!]/).filter(function (n) {
+    if (/overloading/i.test(n)) {
       result.push(n.replace(/Java/ig, 'JS'));
-    }else{
+    } else {
       result.push(n);
     }
   });
-  
+
   console.log(result);
 }

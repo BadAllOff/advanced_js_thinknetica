@@ -9,11 +9,11 @@ function countVowelsAndConsonants() {
   let vowels = 0;
   let consonants = 0;
 
-  for (let i = 0; i <= inputData.length; i++){
-    if((inputData.charAt(i).match(/[aeiouAEIOU]/))){       
+  for (let i = 0; i <= inputData.length; i++) {
+    if ((inputData.charAt(i).match(/[aeiouAEIOU]/))) {
       vowels++;
-    }else if((inputData.charAt(i).match(/[bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]/))){
-     consonants++;
+    } else if ((inputData.charAt(i).match(/[bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]/))) {
+      consonants++;
     }
   }
 

@@ -11,5 +11,5 @@ function removeWhitespaces() {
   let removeWhitespace = textArray.replace(/  +/g, ' ');
   let correctPunctuation = removeWhitespace.replace(/\s+(\W)/g, '$1');
 
-  console.log(correctPunctuation);  
+  console.log(correctPunctuation);
 }

@@ -6,16 +6,16 @@
 */
 
 
-function calcualteAreaOfRegularTriangle () {
+function calcualteAreaOfRegularTriangle() {
 
   let side = Number(prompt('Пожалуйста введите длину стороны правильного треугольника'));
   let area;
 
   if (side > 0) {
 
-    area = (side**2 * Math.sqrt(3)) / 4;
+    area = (side ** 2 * Math.sqrt(3)) / 4;
     alert(area);
-  }else{
+  } else {
     alert("Такого треугольника не существует.");
   }
 };
