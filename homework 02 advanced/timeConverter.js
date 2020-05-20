@@ -17,7 +17,7 @@ function timeConverter() {
     inputTime = inputTime;
     const time = inputTime.match(/([0-9]+)/g);
     // const timePeriod = inputTime.match(/[amp]+/g); будет принимать так же значение "apm" - что неверно.
-    const timePeriod = inputTime.match(/[ap][pm]/g);
+    const timePeriod = inputTime.match(/(am|pm)/g);
 
     let hour = parseInt(time[0]);
     let min = parseInt(time[1]);
