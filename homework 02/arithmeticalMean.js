@@ -17,19 +17,18 @@ function arithmeticalMean() {
     sum = numbersArray.reduce((a, b) => a + b);
     arMean = sum / numbersArray.length;
     displayResult(sum, numbersArray.length, arMean, true);
-  }else{
+  } else {
     sum = numbersArray.reduce((a, b) => a + b);
     arMean = sum / numbersArray.length;
     displayResult(sum, numbersArray.length, arMean);
   }
 };
 
-function displayResult(sum, numbersCount, arithmetMean, repeat=false){
+function displayResult(sum, numbersCount, arithmetMean, repeat = false) {
   console.log(`Сумма чисел: ${sum}`);
   console.log(`Количество чисел: ${numbersCount}`);
   console.log(`Cреднее арифметическое: ${arithmetMean}`);
-  if (repeat) 
-  {
+  if (repeat) {
     arithmeticalMean();
   }
 };

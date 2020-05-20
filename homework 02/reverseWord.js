@@ -5,8 +5,8 @@
  * Слово запрашивать у пользователя 
  */
 
- function reverseWord() {
-   let word = prompt('Введите слово:');
-   let reversedWord = (word.split("").reverse().join(""));
-   console.log(reversedWord);
- };
+function reverseWord() {
+  let word = prompt('Введите слово:');
+  let reversedWord = (word.split("").reverse().join(""));
+  console.log(reversedWord);
+};
