@@ -251,7 +251,6 @@ function checkRegistrationTime(flight, nowTime) {
 function flightReport(flight, nowTime) {
   const FLIGHT = flights[flight];
   if (!FLIGHT) { throw new Error("There is no flight with that ID"); };
-  console.log(FLIGHT);
 
   const REGISTRATION = checkRegistrationTime(FLIGHT, nowTime);
   const COUNT_OF_SEATS = FLIGHT.seats;
@@ -268,6 +267,5 @@ function flightReport(flight, nowTime) {
   }
 
   console.log(REPORT);
-
   return { ...REPORT };
 }
