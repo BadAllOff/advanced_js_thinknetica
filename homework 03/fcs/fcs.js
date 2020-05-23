@@ -221,3 +221,53 @@ function checkRegistrationTime(flight, nowTime) {
 
   return true;
 }
+
+/**
+ * Отчет о рейсе на данный момент
+ * 
+ * @typedef {Object} Report
+ * @property {string} flight Номер рейса
+ * @property {boolean} registration Доступна регистрация на самолет
+ * @property {boolean} complete Регистрация завершена или самолет улетел
+ * @property {number} countOfSeats Общее количество мест
+ * @property {number} reservedSeats Количество купленных (забронированных) мест
+ * @property {number} registeredSeats Количество пассажиров, прошедших регистрацию
+ */
+
+/**
+* Функция генерации отчета по рейсу
+* 
+*  * проверка рейса
+*  * подсчет
+* 
+* @param {string} flight номер рейса
+* @param {number} nowTime текущее время
+* @returns {Report} отчет
+*/
+
+// ----Названия константа я писал по стандарту, капсом. 
+// -----Код выглядит плохо с таким количеством капса
+// ------Это нормально? 
+function flightReport(flight, nowTime) {
+  const FLIGHT = flights[flight];
+  if (!FLIGHT) { throw new Error("There is no flight with that ID"); };
+  console.log(FLIGHT);
+
+  const REGISTRATION = checkRegistrationTime(FLIGHT, nowTime);
+  const COUNT_OF_SEATS = FLIGHT.seats;
+  const RESERVED_SEATS = FLIGHT.tickets.length;
+  const REGISTERED_SEATS = FLIGHT.tickets.filter((t) => t.registrationTime !== null).length;
+
+  const REPORT = {
+    flight: flight,
+    registration: REGISTRATION,
+    complete: !COUNT_OF_SEATS,
+    countOfSeats: COUNT_OF_SEATS,
+    reservedSeats: RESERVED_SEATS,
+    registeredSeats: REGISTERED_SEATS
+  }
+
+  console.log(REPORT);
+
+  return { ...REPORT };
+}
