@@ -189,17 +189,18 @@ function flightDetails(flightName) {
  * @returns boolean успешна ли регистрация
  */
 function eRegistration(ticket, fullName, nowTime) {
-  const FLIGHT_DETAILS = flightDetails(ticket.flight);
+  const flightDetail = flightDetails(ticket.flight);
 
-  if (!FLIGHT_DETAILS) { throw new Error("There is no flight with that ID"); };
+  if (!flightDetail) { throw new Error("There is no flight with that ID"); };
   // Real Ticket = rTicket
-  let rTicket = FLIGHT_DETAILS.tickets.filter((origTicket) => { return origTicket.id == ticket.id })[0];
+  let rTicket = flightDetail.tickets.find(origTicket => origTicket.id == ticket.id);
+  console.log(rTicket);
 
   if (!rTicket) throw new Error('No such ticket.');
 
   if (rTicket.fullName !== fullName) { throw new Error('This ticket is booked on another person') }
 
-  if (checkRegistrationTime(FLIGHT_DETAILS, nowTime)) {
+  if (checkRegistrationTime(flightDetail, nowTime)) {
     rTicket.registrationTime = nowTime;
   };
 
@@ -244,10 +245,6 @@ function checkRegistrationTime(flight, nowTime) {
 * @param {number} nowTime текущее время
 * @returns {Report} отчет
 */
-
-// ----Названия константа я писал по стандарту, капсом. 
-// -----Код выглядит плохо с таким количеством капса
-// ------Это нормально? 
 function flightReport(flight, nowTime) {
   const FLIGHT = flights[flight];
   if (!FLIGHT) { throw new Error("There is no flight with that ID"); };

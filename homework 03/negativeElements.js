@@ -13,16 +13,13 @@
  */
 
 function negativeElements(...arrayNumbers) {
-  let count = 0;
-  let sumNegativeNumbers = arrayNumbers.reduce((total, number) => {
-    if (typeof(number) == 'number' && number < 0) {
-      total += number;
-      count++;
-    }
-    return total;
-  }, 0);
+  let negativeNumbers = arrayNumbers.filter(number => typeof (number) == 'number' && number < 0);
+  let sum = negativeNumbers.reduce((total, number) => total + number, 0)
 
-
-  console.log(sumNegativeNumbers);
-  console.log(count);
+  let result = {
+    count: negativeNumbers.length,
+    sum: sum
+  }
+  
+  console.log(result);
 };
