@@ -12,6 +12,10 @@
 	<button onclick="eRegistration(a, 'Petrov I. I.', makeTime(9, 10))"> Register before time</button><br /><br />
 	<button onclick="eRegistration(a, 'Petrov I. I.', makeTime(15, 10))"> Register after time</button><br /><br />
 	<button onclick="flightReport('BH118', makeTime(12, 10))"> BH118 Flight Report</button><br /><br />
+	<button onclick="revertTicket(a, makeTime(12, 0))"> Return ticket </button><br /><br />
+	<button onclick="revertTicket(a, makeTime(12, 01))"> Too late to Return ticket  </button><br /><br />
+	<button onclick="revertTicket(bTicket, makeTime(11, 59))"> Unable to return Business class ticket  </button><br /><br />
+
 </body>
 
 </html>

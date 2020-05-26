@@ -19,11 +19,13 @@ let flights = {
     businessSeats: 4,
     registrationStarts: makeTime(10, 0),
     registrationEnds: makeTime(15, 0),
+    countOfReservations: 1,
     tickets: [
       {
         id: 'BH118-B50',
         flight: 'BH118',
         fullName: 'Ivanov I. I.',
+        // Допустим что бизнес класс это тип 1
         type: 0,
         seat: 18,
         buyTime: makeTime(2, 0),
@@ -143,6 +145,7 @@ function buyTicket(flightName, buyTime, fullName, type = 0) {
   }
 
   flight.tickets.push(ticket);
+  flight.countOfReservations++;
 
   // return Object.assign({}, ticket);
   return {
@@ -152,6 +155,9 @@ function buyTicket(flightName, buyTime, fullName, type = 0) {
 
 const a = buyTicket('BH118', makeTime(5, 10), 'Petrov I. I.');
 console.log(a);
+const bTicket = buyTicket('BH118', makeTime(5, 10), 'Vasilyev I. I.', 1);
+console.log(bTicket);
+
 
 
 function displayFlights() {
@@ -234,7 +240,18 @@ function checkRegistrationTime(flight, nowTime) {
  * @property {number} reservedSeats Количество купленных (забронированных) мест
  * @property {number} registeredSeats Количество пассажиров, прошедших регистрацию
  */
-
+/**
+ * 
+ * b. Добавить в генератор отчета
+ *  i.
+ *  @property {number} countOfReservations Количество всех регистраций мест
+ *  ii. 
+ *  @property {number} countOfReverts Количество возвратов билетов
+ *  iii. 
+ *  @property {number} percentOfReverts Процент возвратов от общего числа бронирований
+ *  c. При необходимости подправить уже написанный код
+ * 
+ */
 /**
 * Функция генерации отчета по рейсу
 * 
@@ -245,24 +262,77 @@ function checkRegistrationTime(flight, nowTime) {
 * @param {number} nowTime текущее время
 * @returns {Report} отчет
 */
+
 function flightReport(flight, nowTime) {
   const FLIGHT = flights[flight];
   if (!FLIGHT) { throw new Error("There is no flight with that ID"); };
 
   const REGISTRATION = checkRegistrationTime(FLIGHT, nowTime);
   const COUNT_OF_SEATS = FLIGHT.seats;
-  const RESERVED_SEATS = FLIGHT.tickets.length;
-  const REGISTERED_SEATS = FLIGHT.tickets.filter((t) => t.registrationTime !== null).length;
+  const reservedSeats = FLIGHT.tickets.length;
+  const registeredSeats = FLIGHT.tickets.filter((t) => t.registrationTime !== null).length;
+  const countOfReservations = FLIGHT.countOfReservations;
+  //
+  const countOfReverts = countOfReservations - reservedSeats;
+  const percentOfReverts = +(countOfReverts / countOfReservations).toFixed(2)
+
 
   const REPORT = {
     flight: flight,
     registration: REGISTRATION,
     complete: !COUNT_OF_SEATS,
     countOfSeats: COUNT_OF_SEATS,
-    reservedSeats: RESERVED_SEATS,
-    registeredSeats: REGISTERED_SEATS
+    reservedSeats: reservedSeats,
+    registeredSeats: registeredSeats,
+    countOfReservations: countOfReservations,
+    //
+    countOfReverts: countOfReverts,
+    percentOfReverts: percentOfReverts
   }
 
   console.log(REPORT);
   return { ...REPORT };
+}
+
+/**
+ * 2. Для системы контроля авиабилетов, рассмотренной на занятии.
+  a. Добавить функцию возврата билета
+
+/**
+ * Функция возврата билета
+ * 
+ *  * проверка рейса
+ *  * проверка билета
+ *  * вернуть билет можно если до рейса не менее 3 часов
+ *  * вернуть билет можно если не бизнес класс
+ * 
+ * @param {string} ticket номер билета
+ * @param {number} nowTime текущее время
+ * @returns {boolean} удалось ли отменить билет
+ */
+function revertTicket(ticket, nowTime) {
+  try {
+    const flightDetail = flightDetails(ticket.flight);
+    if (!flightDetail) { throw new Error("There is no flight with that ID"); };
+
+    const rTicket = flightDetail.tickets.find(origTicket => origTicket.id == ticket.id);
+    if (!rTicket) throw new Error('No such ticket.');
+
+    if (flightDetail.registrationEnds - (3 * 60 * 60 * 1000) < nowTime) {
+      throw new Error('Ticket returning time has expired');
+    }
+
+    if (rTicket.type === 1) {
+      throw new Error('Sorry but Business class tickets can not be returned.');
+    }
+
+    const ticketIndex = flightDetail.tickets.indexOf(rTicket);
+    flightDetail.tickets.splice(ticketIndex, 1);
+    flights[rTicket.flight].countOfReservations -= 1
+
+    return true;
+  } catch (e) {
+    console.log(e.message);
+    return false;
+  }
 }
