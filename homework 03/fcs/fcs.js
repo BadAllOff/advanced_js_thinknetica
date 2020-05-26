@@ -267,27 +267,25 @@ function flightReport(flight, nowTime) {
   const FLIGHT = flights[flight];
   if (!FLIGHT) { throw new Error("There is no flight with that ID"); };
 
-  const REGISTRATION = checkRegistrationTime(FLIGHT, nowTime);
-  const COUNT_OF_SEATS = FLIGHT.seats;
+  const registration = checkRegistrationTime(FLIGHT, nowTime);
+  const countOfSeats = FLIGHT.seats;
   const reservedSeats = FLIGHT.tickets.length;
   const registeredSeats = FLIGHT.tickets.filter((t) => t.registrationTime !== null).length;
   const countOfReservations = FLIGHT.countOfReservations;
-  //
   const countOfReverts = countOfReservations - reservedSeats;
   const percentOfReverts = +(countOfReverts / countOfReservations).toFixed(2)
 
 
   const REPORT = {
-    flight: flight,
-    registration: REGISTRATION,
-    complete: !COUNT_OF_SEATS,
-    countOfSeats: COUNT_OF_SEATS,
-    reservedSeats: reservedSeats,
-    registeredSeats: registeredSeats,
-    countOfReservations: countOfReservations,
-    //
-    countOfReverts: countOfReverts,
-    percentOfReverts: percentOfReverts
+    flight,
+    registration,
+    complete: !countOfSeats,
+    countOfSeats,
+    reservedSeats,
+    registeredSeats,
+    countOfReservations,
+    countOfReverts,
+    percentOfReverts
   }
 
   console.log(REPORT);
