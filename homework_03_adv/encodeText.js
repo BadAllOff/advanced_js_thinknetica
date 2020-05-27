@@ -35,14 +35,14 @@
  */
 
 function encodeText(str) {
-  if (typeof str !== 'string') { throw new Error('Please provide some text') };
+  if (typeof str !== 'string')
+    throw new Error('Please provide some text')
 
   let arrayOfWords = str.trim().split(' ');
   let dictionary = [];
   let encodedText = [];
-  let result = { dictionary, encodedText };
-
   let i = 0;
+
   do {
 
     if (dictionary.length == 0) {
@@ -51,7 +51,6 @@ function encodeText(str) {
     } else {
       let matchIndex = findMatchIndex(dictionary, arrayOfWords[i]);
       matchIndex ? dictionary[matchIndex].count += 1 : dictionary.push({ word: arrayOfWords[i], count: 1 });
-
       i += 1;
     }
   } while (i < arrayOfWords.length);
@@ -62,7 +61,10 @@ function encodeText(str) {
     encodedText.push(code);
   });
 
-  result.encodedText = encodedText.join(',')
+  const result = {
+    dictionary,
+    encodedText: encodedText.join(',')
+  };
 
   console.log(result);
 }
@@ -75,14 +77,12 @@ function encodeText(str) {
  * @returns {string} уникальный код.
  */
 
-function generateUnigueCode(dictionary, word) {
-  let code = Math.floor(Math.random() * 500).toString(32);
+function generateUnigueCode(dictionary) {
+  let code;
 
-  dictionary.find((element) => {
-    if (element.code == code && element.word != word) {
-      generateUnigueCode(dictionary);
-    }
-  });
+  do {
+    code = Math.floor(Math.random() * 500).toString(32);
+  } while (dictionary.find((element) => element.code === code))
 
   return code;
 }

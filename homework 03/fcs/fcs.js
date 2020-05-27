@@ -25,7 +25,6 @@ let flights = {
         id: 'BH118-B50',
         flight: 'BH118',
         fullName: 'Ivanov I. I.',
-        // Допустим что бизнес класс это тип 1
         type: 0,
         seat: 18,
         buyTime: makeTime(2, 0),
@@ -158,8 +157,6 @@ console.log(a);
 const bTicket = buyTicket('BH118', makeTime(5, 10), 'Vasilyev I. I.', 1);
 console.log(bTicket);
 
-
-
 function displayFlights() {
   console.log('*** List of all flights ***');
   console.log(flights);
@@ -177,7 +174,6 @@ function flightDetails(flightName) {
   // console.table(flight.tickets);
 
   return flight;
-
 }
 
 
@@ -197,14 +193,18 @@ function flightDetails(flightName) {
 function eRegistration(ticket, fullName, nowTime) {
   const flightDetail = flightDetails(ticket.flight);
 
-  if (!flightDetail) { throw new Error("There is no flight with that ID"); };
+  if (!flightDetail)
+    throw new Error("There is no flight with that ID");
+
   // Real Ticket = rTicket
   let rTicket = flightDetail.tickets.find(origTicket => origTicket.id == ticket.id);
   console.log(rTicket);
 
-  if (!rTicket) throw new Error('No such ticket.');
+  if (!rTicket)
+    throw new Error('No such ticket.');
 
-  if (rTicket.fullName !== fullName) { throw new Error('This ticket is booked on another person') }
+  if (rTicket.fullName !== fullName)
+    throw new Error('This ticket is booked on another person')
 
   if (checkRegistrationTime(flightDetail, nowTime)) {
     rTicket.registrationTime = nowTime;
@@ -223,8 +223,8 @@ function checkRegistrationTime(flight, nowTime) {
       throw new Error(`Registration didn't started yet.`);
     } else if (nowTime > flight.registrationEnds) {
       throw new Error(`Sorry, you're late. Registration has ended.`)
-    }
-  }
+    };
+  };
 
   return true;
 }
@@ -264,17 +264,17 @@ function checkRegistrationTime(flight, nowTime) {
 */
 
 function flightReport(flight, nowTime) {
-  const FLIGHT = flights[flight];
-  if (!FLIGHT) { throw new Error("There is no flight with that ID"); };
+  const flightDetail = flights[flight];
+  if (!flightDetail)
+    throw new Error("There is no flight with that ID");
 
-  const registration = checkRegistrationTime(FLIGHT, nowTime);
-  const countOfSeats = FLIGHT.seats;
-  const reservedSeats = FLIGHT.tickets.length;
-  const registeredSeats = FLIGHT.tickets.filter((t) => t.registrationTime !== null).length;
-  const countOfReservations = FLIGHT.countOfReservations;
+  const registration = checkRegistrationTime(flightDetail, nowTime);
+  const countOfSeats = flightDetail.seats;
+  const reservedSeats = flightDetail.tickets.length;
+  const registeredSeats = flightDetail.tickets.filter((t) => t.registrationTime !== null).length;
+  const countOfReservations = flightDetail.countOfReservations;
   const countOfReverts = countOfReservations - reservedSeats;
-  const percentOfReverts = +(countOfReverts / countOfReservations).toFixed(2)
-
+  const percentOfReverts = Math.round(countOfReverts / countOfReservations * 100)
 
   const REPORT = {
     flight,
@@ -288,7 +288,6 @@ function flightReport(flight, nowTime) {
     percentOfReverts
   }
 
-  console.log(REPORT);
   return { ...REPORT };
 }
 
@@ -311,18 +310,18 @@ function flightReport(flight, nowTime) {
 function revertTicket(ticket, nowTime) {
   try {
     const flightDetail = flightDetails(ticket.flight);
-    if (!flightDetail) { throw new Error("There is no flight with that ID"); };
+    if (!flightDetail)
+      throw new Error("There is no flight with that ID");
 
     const rTicket = flightDetail.tickets.find(origTicket => origTicket.id == ticket.id);
-    if (!rTicket) throw new Error('No such ticket.');
+    if (!rTicket)
+      throw new Error('No such ticket.');
 
-    if (flightDetail.registrationEnds - (3 * 60 * 60 * 1000) < nowTime) {
+    if (flightDetail.registrationEnds - (3 * 60 * 60 * 1000) < nowTime)
       throw new Error('Ticket returning time has expired');
-    }
 
-    if (rTicket.type === 1) {
+    if (rTicket.type === 1)
       throw new Error('Sorry but Business class tickets can not be returned.');
-    }
 
     const ticketIndex = flightDetail.tickets.indexOf(rTicket);
     flightDetail.tickets.splice(ticketIndex, 1);
