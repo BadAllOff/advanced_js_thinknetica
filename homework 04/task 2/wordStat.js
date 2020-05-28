@@ -25,16 +25,15 @@
  */
 
 function wordStat(text) {
-  if (typeof (text) != 'string') { throw new Error('Пожалуйста введите текст.'); }
+  if (typeof (text) != 'string')
+    throw new Error('Пожалуйста введите текст.');
 
-  let agregator = [];
-  let chunks = text.split(' ');
-
-  agregator = chunks.map((currentWord) => {
-    return { 'word': currentWord, sum: sumCharCode(currentWord) };
-  });
-
-  return agregator;
+  return text
+      .split(' ')
+      .map(word => ({
+        word, 
+        sum: sumCharCode(word)
+      }));
 }
 
 

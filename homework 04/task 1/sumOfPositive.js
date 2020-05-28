@@ -19,14 +19,12 @@
 function sumOfPositive(arr) {
   if (!Array.isArray(arr))
     throw new Error('Input data shold be array of numbers');
-    
-  let positiveNumbers = arr.filter(number => typeof (number) == 'number' && number > 0);
-  let sum = positiveNumbers.reduce((total, number) => total + number, 0)
 
-  let result = {
+  const positiveNumbers = arr.filter(number => typeof (number) == 'number' && number > 0);
+  const sum = positiveNumbers.reduce((total, number) => total + number, 0)
+
+  return {
     count: positiveNumbers.length,
     sum: sum
   }
-  
-  return result;
 };
