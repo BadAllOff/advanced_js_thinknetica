@@ -333,3 +333,51 @@ function revertTicket(ticket, nowTime) {
     return false;
   }
 }
+
+/**
+ * 2. Реализовать функцию flightDetails(flightName) которая принимает объект рейса и будет выводить в контейнер 
+ * <div id=”flight-details”></div> отчет по рейсу и отображать список купленных билетов: номер билета, 
+ * место, полное имя пассажира, прошел ли регистрацию на рейс. 
+ */
+
+// такая функция уже есть, пришлось переназвать
+
+function showflightDetails(flightName) {
+
+  if (!flights[flightName])
+    throw new Error('No such flight');
+
+  let flightContainer = document.getElementById("flight-details");
+  flightContainer.innerHTML = "";
+
+  let title = document.createElement('h3');
+  title.textContent = `Flight ${flightName} details`;
+  flightContainer.appendChild(title);
+
+  let ticketsArr = Array.from(flights[flightName].tickets);
+  let allTicketsInfo = document.createElement('ul');
+
+  let protoObj = {
+    id: 'Ticket id',
+    seat: 'Seat number',
+    fullName: 'Passenger name'
+  }
+
+  ticketsArr.forEach(ticket => {
+    let divider = document.createElement('hr');
+
+    for (let key in protoObj) {
+      let value = protoObj[key];
+      let li = document.createElement('li');
+      li.innerText = `${value} - ${ticket[key]}`;
+      allTicketsInfo.appendChild(li);
+    };
+
+    let li = document.createElement('li');
+    li.innerText = `Registered: ${ticket.registrationTime ? 'yes' : 'no'}`;
+    allTicketsInfo.appendChild(li);
+    allTicketsInfo.appendChild(divider);
+  });
+
+  document.getElementById("flight-details").appendChild(allTicketsInfo);
+}
