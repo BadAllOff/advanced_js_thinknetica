@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
       printNode(item, deep + 1);
   }
 
-  // printNode(document.documentElement);
+  printNode(document.documentElement);
   console.log('-----------------------------------------------------------------------------');
 
 
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 
-  printNode2(document.body);
+  printNode2(document.documentElement);
   console.log('-----------------------------------------------------------------------------');
 
   /**
