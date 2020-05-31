@@ -50,8 +50,8 @@ function parseTemplate(el, obj) {
   for (let i = 0; i < el.children.length; i++) {
     let currElement = el.children[i];
     let dataAttributes = currElement.dataset;
-    if (keys.includes(dataAttributes.field)) {
-      currElement.textContent = obj[dataAttributes.field]
-    }
+    if (!keys.includes(dataAttributes.field))
+      throw new Error(`Element don't have proper property`)
+    currElement.textContent = obj[dataAttributes.field]
   }
 }

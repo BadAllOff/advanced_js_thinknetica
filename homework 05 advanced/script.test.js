@@ -23,11 +23,9 @@ describe('parseTemplate', () => {
   })
 
   it('should not modifies element correctly', () => {
-    parseTemplate(el, falseData);
+    expect(() => parseTemplate(el, falseData)).to.throw(`Element don't have proper property`);
 
     expect(el.querySelector('h3').textContent).not.to.equal(falseData.title);
     expect(el.querySelector('p').textContent).not.to.equal(falseData.description);
-    expect(el.querySelector('h3').textContent).to.equal(data.title);
-    expect(el.querySelector('p').textContent).to.equal(data.description);
   })
 });
