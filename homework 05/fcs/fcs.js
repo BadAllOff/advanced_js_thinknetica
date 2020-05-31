@@ -357,7 +357,7 @@ function showflightDetails(flightName) {
   let ticketsArr = Array.from(flights[flightName].tickets);
   let allTicketsInfo = document.createElement('ul');
 
-  let protoObj = {
+  let protoTicket = {
     id: 'Ticket id',
     seat: 'Seat number',
     fullName: 'Passenger name'
@@ -366,8 +366,8 @@ function showflightDetails(flightName) {
   ticketsArr.forEach(ticket => {
     let divider = document.createElement('hr');
 
-    for (let key in protoObj) {
-      let value = protoObj[key];
+    for (let key in protoTicket) {
+      let value = protoTicket[key];
       let li = document.createElement('li');
       li.innerText = `${value} - ${ticket[key]}`;
       allTicketsInfo.appendChild(li);
