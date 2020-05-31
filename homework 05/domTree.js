@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
       printNode(item, deep + 1);
   }
 
-  printNode(document.documentElement);
+  // printNode(document.documentElement);
   console.log('-----------------------------------------------------------------------------');
 
 
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
    * @return {VoidFunction}
    */
 
-  function printNode2(node, deep) {
+  function printNode2(node, deep = 0) {
     console.log('='.repeat(deep) + '>', node.nodeType, node.nodeName);
 
     if (node.firstChild) {
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 
-  printNode2(document.documentElement, 0);
+  printNode2(document.body);
   console.log('-----------------------------------------------------------------------------');
 
   /**
