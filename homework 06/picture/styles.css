@@ -1,0 +1,32 @@
+table {
+  margin: 0px;
+  border-spacing: 0;
+}
+
+td {
+  border: 1px solid rgb(238, 238, 238);
+  border-collapse: collapse;
+}
+
+td {
+  width: 1em;
+  height: 1em;
+}
+
+#canvas {
+  display: hidden;
+  padding: 10px;
+  min-width: 20px;
+  min-height: 29px;
+}
+
+#palette {
+  margin: 10px auto;
+  padding: 10px;
+  min-width: 20px;
+  min-height: 29px;
+}
+
+.hidden {
+  visibility: hidden;
+}
