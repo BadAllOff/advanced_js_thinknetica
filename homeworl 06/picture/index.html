@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>events</title>
+    <style>
+        table {
+            display: block;
+            margin: 20px auto;
+            max-width: 200px;
+        }
+
+        table tr td {
+            width: 10px;
+            height: 10px;
+            border: 1px solid gray;
+        }
+    </style>
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0">
+    <tr>
+        <td data-code="hello"></td>
+        <td data-code="world"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+
+
+<script>
+    'use strict';
+    const table = document.getElementsByTagName('table')[0];
+
+    table.addEventListener('click', click);
+
+    /**
+     * @param {MouseEvent} event
+     */
+    function click(event) {
+        console.log(event.type, event.target);
+
+        if (event.target.tagName !== 'TD')
+            return;
+
+
+        if (event.shiftKey)
+            event.target.style.backgroundColor = 'transparent';
+        else if (event.ctrlKey)
+            event.target.style.backgroundColor = 'blue';
+        else
+            event.target.style.backgroundColor = 'red';
+
+        // console.log(this);
+        // console.log(event.offsetX, event.offsetY)
+        console.log(event.target.dataset.code);
+    }
+</script>
+</body>
+
+</html>

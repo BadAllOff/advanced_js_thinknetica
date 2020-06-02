@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>events</title>
+    <style>
+        body {
+            margin: 20px auto;
+            width: 50%;
+        }
+
+        body * {
+            margin: 10px;
+            border: 1px dotted blue;
+        }
+    </style>
+</head>
+<body>
+
+<section>Section
+    <div>Div
+        <p>P</p>
+    </div>
+</section>
+
+<script>
+    const elements = document.body.querySelectorAll('*');
+    elements.forEach(el => {
+        el.addEventListener(
+            "click",
+            event => console.log('Capturing', el, event),
+            true,
+        );
+        el.addEventListener(
+            "click",
+            event => console.log('Bubbling', el, event)
+        );
+    });
+</script>
+
+</body>
+</html>
