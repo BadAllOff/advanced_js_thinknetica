@@ -1,7 +1,7 @@
 describe('parseTemplate', () => {
   let el = document.getElementById('item1');
   const data = { title: 'New title', description: 'new description' };
-  const falseData = { falseTitle: 'New fake title', falseDescription: 'New fake description' };
+  const falseData = {};
 
   it('should throw error if no element provided', () => {
     expect(() => parseTemplate('', {})).to.throw('Please provide element');
@@ -24,8 +24,5 @@ describe('parseTemplate', () => {
 
   it('should not modifies element correctly', () => {
     expect(() => parseTemplate(el, falseData)).to.throw(`Element don't have proper property`);
-
-    expect(el.querySelector('h3').textContent).not.to.equal(falseData.title);
-    expect(el.querySelector('p').textContent).not.to.equal(falseData.description);
   })
 });
