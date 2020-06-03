@@ -17,45 +17,44 @@
       <div class="row">
         <div class="col-md-4 login-sec">
           <h2 class="text-center">But a ticket</h2>
-          <form class="login-form">
+          <div class="errorMessage text-danger">Test</div>
+
+          <form class="login-form" id="buy-ticket-form">
             <div class="form-group">
               <label for="exampleInputEmail1" class="text-uppercase">Flight</label>
-              <input type="text" class="form-control" placeholder="">
-
+              <input type="text" class="form-control" name="flightName" placeholder="">
             </div>
             <div class="form-group">
               <label for="exampleInputPassword1" class="text-uppercase">Name</label>
-              <input type="text" class="form-control" placeholder="">
+              <input type="text" class="form-control" name="fullname" placeholder="">
             </div>
-
-
+            <div class="form-group">
+              <label for="inputState">Ticket class</label>
+              <select id="inputState" class="form-control" name="type">
+                <option value="0" selected>Regular</option>
+                <option value="1">Business</option>
+              </select>
+            </div>
             <div class="form-check">
-              <label class="form-check-label">
-                <input type="checkbox" class="form-check-input">
-                <small>Business</small>
-              </label>
               <button type="submit" class="btn btn-login float-right">Submit</button>
             </div>
-
           </form>
+
         </div>
         <div class="col-md-8 banner-sec">
           <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-
-
             <div id="flight-list-block">
               <h2>List of flights</h2>
               <template id="flight-list-item-template">
                 <li>
                   <b data-field="name"></b>
-                  <span data-field="count"></span> /
+                  <span data-field="count"></span>
                   <span data-field="seats"></span>
                 </li>
               </template>
               <ul id="flight-list">
               </ul>
             </div>
-
             <div id="flight-details-block">
               <h2>Flight details</h2>
               <ul id="flight-details">
@@ -79,7 +78,7 @@
               <template id="flight-details-ticket-template">
                 <li>
                   <b data-field="id"></b>
-                  <span data-field="fullName"></span> /
+                  <span data-field="fullName"></span>
                   <span data-field="seat"></span>
                   <span data-field="registrationTime"></span>
                 </li>
@@ -87,8 +86,6 @@
               <ul id="tickets-list">
               </ul>
             </div>
-
-
               <div id="e-registration-block">
                 <h2>e-Registration</h2>
                 <form id="e-registration-form">
@@ -97,12 +94,11 @@
                   <button type="submit" class="btn btn-login">Register</button>
                 </form>
               </div>
-
           </div>
         </div>
       </div>
   </section>
-  
+
   <script src="core/main.js"></script>
   <script src="core/utils.js"></script>
   <script src="core/add-flight.js"></script>
@@ -113,7 +109,8 @@
   <script src="utils.js"></script>
   <script src="display-flights.js"></script>
   <script src="flight-details.js"></script>
-  <script src="e-registration.form.js"></script>>
+  <script src="e-registration.form.js"></script>
+  <script src="buy-ticket.form.js"></script>
   <script src="script.js"></script>
 </body>
 

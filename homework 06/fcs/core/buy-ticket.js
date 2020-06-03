@@ -75,6 +75,9 @@ function buyTicket(flights, flightName, buyTime, fullName, type = 0) {
     if (buyTime > flight.registartionEnds)
         throw new Error('Time away');
 
+    if (!fullName)
+    throw new Error('Provide a name')
+
     const seat = findAvailableSeat(flight, type);
     if (!seat)
         throw new Error(`No seats of type ${type} available. You can choose another type`);
