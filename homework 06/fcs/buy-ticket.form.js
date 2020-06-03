@@ -26,6 +26,7 @@ function submitHandler(event) {
 
   try {
     const result = buyTicket(flights, flightName, buyTime, fullName, type);
+    buyTicketForm.reset();
     updateView();
   } catch (e) {
     document.querySelector(".errorMessage").textContent = e.message;
