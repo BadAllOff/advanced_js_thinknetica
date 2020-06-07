@@ -1,0 +1,20 @@
+#register-x {
+    height: 1.6em;
+    font-size: 1.6em;
+
+    text-align: right;
+}
+
+#register-y {
+    height: 0.8em;
+    font-size: 0.8em;
+
+    text-align: right;
+}
+
+button {
+    width: 30px;
+    height: 30px;
+
+    padding: 5px;
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>events</title>
+    <style>
+        button {
+            display: block;
+            margin: 50vh auto;
+            padding: 20px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="btn">Click me</button>
+
+    <button id="remove">Remove event listeners</button>
+
+    <script>
+        const btn = document.getElementById('btn');
+
+        btn.addEventListener('click', toggle);
+
+        function toggle(event) {
+            console.log(event.target);
+            if (btn.textContent === 'Thanks')
+                btn.textContent = 'Click me again';
+            else
+                btn.textContent = 'Thanks';
+        }
+
+        document.getElementById('remove')
+            .addEventListener('click', () => {
+                btn.removeEventListener('click', toggle);
+                console.log('eventListeners removed');
+            });
+    </script>
+</body>
+
+</html>
