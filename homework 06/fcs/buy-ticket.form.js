@@ -17,16 +17,20 @@ buyTicketForm.addEventListener("submit", submitHandler);
 function submitHandler(event) {
   // прерываем всплытие что бы форма не отправлялась
   event.preventDefault();
-  
+
   let flights = world.flights;
   let flightName = buyTicketForm.elements.flightName.value;
   let buyTime = Date.now();
-  let fullName = buyTicketForm.elements.fullname.value ? buyTicketForm.elements.fullname.value : false ;
+  let fullName = buyTicketForm.elements.fullname.value
+    ? buyTicketForm.elements.fullname.value
+    : false;
   let type = +buyTicketForm.elements.type.value;
 
+  buyTicketForm.reset();
+
   try {
+    document.querySelector(".errorMessage").textContent = "";
     const result = buyTicket(flights, flightName, buyTime, fullName, type);
-    buyTicketForm.reset();
     updateView();
   } catch (e) {
     document.querySelector(".errorMessage").textContent = e.message;
