@@ -1,5 +1,5 @@
 
-const ship = new Ship('Best ship');
+const ship = new Ship('Best ship', 'Tesla', { x: 1, y: 1 });
 ship.moveTo({ x: 10, y: 10 });
 console.log(ship);
 
