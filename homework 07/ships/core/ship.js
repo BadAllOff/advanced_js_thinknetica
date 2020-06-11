@@ -102,27 +102,4 @@ function Ship(name, model, position = { x: 0, y: 0 }) {
 
     return true;
   };
-
-  this.isAnchorDroped = function () {
-    console.log("isAnchorDroped", this);
-    return this._isAnchorDroped;
-  };
-
-  /**
-   * @param {boolean} droped
-   */
-  this.dropAnchor = function () {
-    if (this.speed !== 0) 
-      throw new Error("Speed must be 0");
-
-    this._isAnchorDroped = true;
-  };
-
-  /**
-   * @param {boolean} droped
-   */
-  this.riseAnchor = function () {
-    if (this._isAnchorDroped) this._isAnchorDroped = false;
-    return true;
-  };
 }

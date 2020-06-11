@@ -14,7 +14,7 @@ function Marina(position = { x: 0, y: 0 }) {
     if (!this._shipNearMarina(ship))
       throw new Error(`The ship '${ship.name}' is too far from marina`);
 
-    ship.dropAnchor();
+    dropAnchor.call(ship);
     this.ships.push(ship.name);
     return true;
   };
@@ -26,7 +26,7 @@ function Marina(position = { x: 0, y: 0 }) {
     if (!this.ships.includes(ship.name))
       throw new Error(`The ship '${ship.name}' is not moored in marina`);
 
-    ship.riseAnchor();
+    riseAnchor.call(ship);
     this.ships.pop(ship.name);
     return true;
   };

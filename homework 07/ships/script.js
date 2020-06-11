@@ -1,14 +1,12 @@
 const ship = new Ship("Best ship", "Tesla", { x: 1, y: 1 });
-ship.dropAnchor();
+dropAnchor.call(ship);
 const ship2 = new Ship("Good ship 2");
 const marina = new Marina({ x: 3, y: 3 });
 
-ship.riseAnchor();
+riseAnchor.call(ship);
 ship.moveTo({ x: 3, y: 3 });
 marina.moor(ship);
-ship.moveTo({ x: 3, y: 4 });
 marina.unmoor(ship);
-marina.unmoor(ship2);
 
 // console.log(ship);
 // console.log(ship.getAnchorDroped());
