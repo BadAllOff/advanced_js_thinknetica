@@ -57,8 +57,11 @@ function Ship(name, model, position = { x: 0, y: 0 }) {
    * @param ['n', 's', 'e', 'w'] direction
    */
   this.move = function (direction) {
-    if (this._isAnchorDroped) throw new Error("You need to rise anchor");
-    if (!directions.includes(direction)) throw new Error("Wrong direction");
+    if (this._isAnchorDroped) 
+      throw new Error("You need to rise anchor");
+      
+    if (!directions.includes(direction)) 
+      throw new Error("Wrong direction");
 
     let x = this.position.x;
     let y = this.position.y;
@@ -85,10 +88,13 @@ function Ship(name, model, position = { x: 0, y: 0 }) {
    * @param {Object} position
    */
   this.moveTo = function (position) {
-    if (this._isAnchorDroped) throw new Error("You need to rise anchor");
+    if (this._isAnchorDroped) 
+      throw new Error("You need to rise anchor");
 
-    this.distance += Math.sqrt((position.x - this.position.x) ** 2 + (position.y - this.position.y) ** 2);
-    
+    this.distance += Math.sqrt(
+      (position.x - this.position.x) ** 2 + (position.y - this.position.y) ** 2
+    );
+
     this.position = {
       x: position.x,
       y: position.y,
@@ -106,7 +112,8 @@ function Ship(name, model, position = { x: 0, y: 0 }) {
    * @param {boolean} droped
    */
   this.dropAnchor = function () {
-    if (this.speed !== 0) throw new Error("Speed must be 0");
+    if (this.speed !== 0) 
+      throw new Error("Speed must be 0");
 
     this._isAnchorDroped = true;
   };

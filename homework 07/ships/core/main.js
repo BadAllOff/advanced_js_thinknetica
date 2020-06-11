@@ -8,3 +8,9 @@
  * @property {number} distance
  * @property {number} speed
  */
+
+/**
+ * @typedef {Object} Marina
+ * @property {Object} position
+ * @property {Array} ships
+ */
