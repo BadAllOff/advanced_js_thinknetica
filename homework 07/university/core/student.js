@@ -6,21 +6,19 @@
  * @constructor
  */
 
-
 function Student(fullName, isPresent = true) {
-  this.fullName = fullName;
   const [lastName, name, patronymic] = fullName.split(" ");
-
+  this.fullName = fullName;
   this.name = name;
   this.lastName = lastName;
   this.patronymic = patronymic;
-  this.isPresent = isPresent;
+  this.present = isPresent;
 
   this.getSurnameWithInitials = function () {
-    return `${name} ${lastName[0]}. ${patronymic[0]}.`;
+    return `${this.name} ${this.lastName[0]}. ${this.patronymic[0]}.`;
   };
 
   this.isPresent = function () {
-    return this.isPresent;
+    return this.present;
   };
 }
