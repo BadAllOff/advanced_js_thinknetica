@@ -32,13 +32,6 @@ function Marina(position = { x: 0, y: 0 }) {
   };
 
   this._shipNearMarina = function (ship) {
-    if (
-      ship.position.x == this.position.x &&
-      ship.position.y == this.position.y
-    ) {
-      return true;
-    } else {
-      return false;
-    }
+    return ship.position.x == this.position.x && ship.position.y == this.position.y;
   };
 }
