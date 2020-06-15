@@ -12,13 +12,8 @@
  * @param {{ x: number, y: number }} [{x:0, y:0}] position
  */
 
-function SailingShip(
-  name,
-  model,
-  totalSailArea,
-  numberOfMasts,
-  position = { x: 0, y: 0 }
-) {
+function SailingShip(name,model,totalSailArea,numberOfMasts,position = { x: 0, y: 0 }) 
+{
   Ship.call(this);
   this.name = name;
   this.model = model;

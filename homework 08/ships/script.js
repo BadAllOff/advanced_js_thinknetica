@@ -16,7 +16,10 @@ const sailShip = new SailingShip('Captain Jack Sparrow', 'S1', 500, 10, {x:2, y:
 const motorMarina = new MotorMarina({x: 1, y: 1}, MotorShip)
 const sailMarina = new SailingMarina({x: 1, y: 1}, SailingShip)
 
-//Строить корабли
+console.log(motorMarina);
+
+
+// //Строить корабли
 const newShip = motorMarina.buildShip();
 newShip.name = 'Terminator2';
 newShip.model = 'M2';
@@ -25,9 +28,12 @@ newShip.material = 'vibranium';
 newShip.position = {x:1, y:2};
 // console.log(newShip);
 
-//Ремонтировать корабли - Должен проверяться тип корабля, работать только с кораблями своего типа 
+// //Ремонтировать корабли - Должен проверяться тип корабля, работать только с кораблями своего типа 
 motorMarina.repair(motorShip);
 // motorMarina.repair(sailShip); // ERROR
+console.log(motorShip); // new damage property
+// console.log(sailShip); // no damage property
+
 
 //Перекрашивать корабли - Можно красить любые корабли
 motorMarina.paintShip(motorShip, 'red');

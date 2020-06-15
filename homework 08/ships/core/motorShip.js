@@ -12,13 +12,8 @@
  * @param {{ x: number, y: number }} [{x:0, y:0}] position
  */
 
-function MotorShip(
-  name,
-  model,
-  enginePower,
-  material,
-  position = { x: 0, y: 0 }
-) {
+function MotorShip(name,model,enginePower,material,position = { x: 0, y: 0 }) 
+{
   Ship.call(this);
   this.name = name;
   this.model = model;
