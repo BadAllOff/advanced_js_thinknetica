@@ -1,3 +1,5 @@
+'use strict';
+
 const ship = new Ship("Best ship", "Tesla", { x: 1, y: 1 });
 dropAnchor.call(ship);
 const ship2 = new Ship("Good ship 2");
@@ -8,44 +10,35 @@ ship.moveTo({ x: 3, y: 3 });
 marina.moor(ship);
 marina.unmoor(ship);
 
-// console.log(ship);
-// console.log(ship.getAnchorDroped());
-// // ship._isAnchorDroped = true; Так нельзя
-// console.log(ship);
-// console.log('  after 1 try', ship.getAnchorDroped());
-// ship.speed = 0;
-// ship.setAnchorDroped(true);
-// console.log(ship);
-// console.log(ship.getAnchorDroped());
+const motorShip = new MotorShip('Terminator', 'M1', 9000, 'titan', {x:2, y:2});
+const sailShip = new SailingShip('Captain Jack Sparrow', 'S1', 500, 10, {x:2, y:3});
 
-// const car = {
-//     model: 'Model X',
-//     seats: 4,
-// }
+console.log(motorShip);
+console.log(sailShip);
 
-// dropAnchor(ship);
-// dropAnchor(car);
+const motorMarina = new MotorMarina({x: 1, y: 1}, MotorShip)
+console.log(motorMarina);
+// console.log(motorMarina.marinaType == motorShip.__proto__.constructor);
+// console.log(motorMarina.marinaType == sailShip.__proto__.constructor);
 
-// function dropAnchor(ship) {
-//     console.log(ship);
-//     console.log(typeof ship);
+//Строить корабли
+const newShip = motorMarina.buildShip();
+newShip.name = 'Terminator2';
+newShip.model = 'M2';
+newShip.enginePower = 19000;
+newShip.material = 'vibranium';
+newShip.position = {x:1, y:2};
+console.log(newShip);
 
-//     if (!(ship instanceof Ship))
-//         throw new Error('Not a Ship');
+//Ремонтировать корабли - Должен проверяться тип корабля, работать только с кораблями своего типа 
+motorMarina.repair(motorShip);
+// motorMarina.repair(sailShip);
+//Перекрашивать корабли - Можно красить любые корабли
+motorMarina.paintShip(motorShip, 'red');
+motorMarina.paintShip(sailShip, 'blue');
+//Обменивать старый корабль на новый - Можно обменивать только корабли того же типа 
+motorMarina.trade(motorShip);
+// motorMarina.trade(sailShip);
 
-//     ship.isAnchorDroped = true;
-// }
-
-// Save it
-
-// const arr = {
-//     '0': 'a',
-//     '1': 'b',
-//     length: 2,
-// }
-
-// for (let i = 0; i < arr.length; i++)
-//     console.log(arr[i]);
-
-// Array.from(arr)
-//      .forEach(item => console.log(item))
+// console.log(motorShip);
+console.log(sailShip);
