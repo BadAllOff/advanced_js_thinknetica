@@ -20,7 +20,7 @@ function Ship(name, model, position = { x: 0, y: 0 }) {
       throw new Error("Wrong direction");
 
     let x = this.position.x;
-    let y = this.position.y;
+    let y = this.position.y; 
 
     switch (direction) {
       case "n":
