@@ -3,6 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.js"></script>
+    <script>
+      mocha.setup("bdd");
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.5.0/chai.js"></script>
+    <script>
+      var assert = chai.assert;
+      var expect = chai.expect;
+    </script>
     <title>Ships and Marinas</title>
   </head>
   <body>
@@ -15,5 +28,19 @@
     <script src="core/sailingMarina.js"></script>
     <script src="shared/utils.js"></script>
     <script src="script.js"></script>
+    
+    
+    
+    
+    
+    
+    <script src="core/ships.test.js"></script>
+    <script src="shared/utils.test.js"></script>
+
+
+    <div id="mocha"></div>
+    <script>
+        mocha.run();
+    </script>
   </body>
 </html>
