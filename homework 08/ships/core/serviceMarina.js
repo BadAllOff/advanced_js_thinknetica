@@ -17,7 +17,7 @@ function ServiceMarina() {
    * @param void
    */
   this.buildShip = function () {
-    return new MotorShip();
+    return new this.shipType();
   };
 
   /**
