@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.css">
+  <!-- добавляем фреймворк тестирования mocha -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.js"></script>
+  <script>mocha.setup('bdd');</script>
+  <!-- добавим chai -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.5.0/chai.js"></script>
+  <script>
+    // chai предоставляет большое количество функций. Объявим assert глобально
+    var expect = chai.expect;
+  </script>
+</head>
+
+<body>
+  <h1>Change elements values</h1>
+  <button onclick="parseTemplate(document.getElementById('item1'), objData)"></button>
+  <div id="item1">
+    <h3 data-field="title">Some title</h3>
+    <p data-field="description"></p>
+  </div>
+  <hr>
+  <!-- элемент с id="mocha" будет содержать результаты тестов -->
+  <div id="mocha"></div>
+</body>
+<script>
+  let objData = {
+    title: 'Hello world'
+  }
+</script>
+<script src="script.js"></script>
+<script src="script.test.js"></script>
+<!-- запускаем тесты! -->
+<script>
+  mocha.run();
+</script>
+
+</html>
