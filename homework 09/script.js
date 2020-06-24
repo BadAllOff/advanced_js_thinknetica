@@ -1,34 +1,63 @@
-const sEl = new Div();
-sEl.template = `<div>{{output}}</div>`;
-sEl.variables = {
+// Text element
+const div = new Div();
+div.template = `<div>{{output}}</div>`;
+div.variables = {
   output: "Some text",
   variable2: "Another text",
 };
-sEl.target = document.getElementById("container");
+div.target = document.getElementById("textContainer");
 
-sEl.styles = {
+div.styles = {
   color: "red",
-  "font-size": "15",
+  "font-size": "30px",
 };
 
-console.log(sEl._styles);
+console.log(div);
 
-sEl.render();
+div.render();
 
-sEl.onClick = () => {
-	console.log('test')
-}
+div.styles = {
+  color: "blue",
+  "font-size": "35px",
+};
 
+div.onClick = () => {
+  console.log("test");
+};
 
+setTimeout(() => {
+  div.unrender();
+}, 10000);
 
+// Input element
+const input = new Input();
+input.template = `<input type="text" name="{{name}}" placeholder="{{placeholder}}">`;
+input.variables = {
+  placeholder: "write here",
+  name: "inputText",
+};
 
-// setTimeout(() => {
-//   sEl.unrender();
-// }, 5000);
+input.target = document.getElementById("inputContainer");
 
+input.render();
 
+input.styles = {
+  color: "red",
+  "font-size": "15px",
+};
 
+input.styles = {
+  color: "blue",
+  "font-size": "10px",
+};
 
+input.onInput(() => {
+  console.log("input");
+});
+
+input.onFocus(() => {
+  console.log("focus");
+});
 
 // const someElement = new Div()
 

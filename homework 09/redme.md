@@ -14,42 +14,40 @@ class HtmlElement
     setter target - Если передаем DOM элемент то записываем его в свойство _target, если нет - выводим сообщение об ошибке
     setter styles, позволяет передать стили в виде объекта и присвоить их в атрибут style
     render() - вызывает _render
-    unrender() - вызывает _render 
-
+    unrender() - вызывает _render
 
 class Input
 
     onInput, принимает функцию
-    onFocus, принимает функцию 
-
+    onFocus, принимает функцию
 
 class Div
 
-    сеттер onClick, принимает функцию 
-
+    сеттер onClick, принимает функцию
 
 Важное требование: изменения должны применяться на лету, т.е. если мы меняем значение цвета, оно сразу же должно примениться
 
 Пример использования:
+
 ```javascript
-const someElement = new Div()
+const someElement = new Div();
 
-someElement.template = `<div>{{output}}</div>`
+someElement.template = `<div>{{output}}</div>`;
 someElement.variables = {
-	output: 'Some text'
-}
+  output: "Some text",
+};
 // Цвет текста синий
 
 someElement.styles = {
-	color: 'red'
-}
-someElement.render()
+  color: "red",
+};
+someElement.render();
 someElement.onClick = () => {
-	console.log('test')
-}
+  console.log("test");
+};
 // Цвет текста синий
 someElement.styles = {
-	color: blue
-}
-someElement.unrender()
+  color: blue,
+};
+someElement.unrender();
 ```

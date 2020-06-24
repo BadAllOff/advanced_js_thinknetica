@@ -1,7 +1,15 @@
 "use strict";
 
 class Input extends HtmlElement {
-  onInput(fn) {}
+  constructor() {
+    super();
+  }
 
-  onFocus(fn) {}
+  onInput(fn) {
+    this._target.firstElementChild.addEventListener("input", fn);
+  }
+
+  onFocus(fn) {
+    this._target.firstElementChild.addEventListener("focus", fn);
+  }
 }
