@@ -1,15 +1,26 @@
 
 
-const someElement = new Div();
-someElement.template = `<div>{{output}}</div><div>{{variable2}}</div>`
-someElement.variables = {
+const sEl = new Div();
+sEl.template = `<div>{{output}}</div>`
+sEl.variables = {
   output: 'Some text',
   variable2: 'Another text'
 }
-someElement.target = document.getElementById("container");
-console.log(someElement._target);
+sEl.target = document.getElementById("container");
 
-someElement.render();
+sEl.styles = {
+  color: 'red',
+  'font-size': '15'
+}
+
+console.log(sEl._styles);
+
+
+
+
+
+
+sEl.render();
 
 
 

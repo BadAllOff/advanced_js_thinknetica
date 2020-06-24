@@ -5,12 +5,14 @@ class HtmlElement {
     this._target;
     this._template;
     this._variables;
+    this._styles;
   }
 
   _render() {
-    console.log("rendering");
+    const accumStyles =[];
 
     if (this._template == undefined) return false;
+
     for (let [key, value] of Object.entries(this._variables)) {
       if (!(typeof value === "function" || typeof value === "string")) {
         throw new Error("Variable type is not supported");
@@ -19,11 +21,16 @@ class HtmlElement {
       this.template = this._template.replace(
         new RegExp(`{{${key}}}`, "g"), value
       );
-
-      
     }
 
     this._target.innerHTML = this._template;
+
+    if (this._styles !== undefined) {
+      for (const [key, value] of Object.entries(this._styles)) {
+        accumStyles.push(`${key}: ${value}`);
+      }
+    }
+    this._target.firstElementChild.style.cssText = accumStyles.join('; ');
   }
 
   _unrender() {}
