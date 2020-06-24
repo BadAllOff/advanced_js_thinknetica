@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
-class Div {
-
-  set onClick (fn) {
-    
+class Div extends HtmlElement {
+  constructor() {
+    super();
   }
 
+  set onClick(fn) {}
 }

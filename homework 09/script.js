@@ -1,20 +1,38 @@
-const someElement = new Div()
 
-someElement.template = `<div>{{output}}</div>`
+
+const someElement = new Div();
+someElement.template = `<div>{{output}}</div><div>{{variable2}}</div>`
 someElement.variables = {
-	output: 'Some text'
+  output: 'Some text',
+  variable2: 'Another text'
 }
-// Цвет текста синий
+someElement.target = document.getElementById("container");
+console.log(someElement._target);
 
-someElement.styles = {
-	color: 'red'
-}
-someElement.render()
-someElement.onClick = () => {
-	console.log('test')
-}
-// Цвет текста синий
-someElement.styles = {
-	color: blue
-}
-someElement.unrender()
+someElement.render();
+
+
+
+
+
+
+// const someElement = new Div()
+
+// someElement.template = `<div>{{output}}</div>`
+// someElement.variables = {
+// 	output: 'Some text'
+// }
+// // Цвет текста синий
+
+// someElement.styles = {
+// 	color: 'red'
+// }
+// someElement.render()
+// someElement.onClick = () => {
+// 	console.log('test')
+// }
+// // Цвет текста синий
+// someElement.styles = {
+// 	color: blue
+// }
+// someElement.unrender()

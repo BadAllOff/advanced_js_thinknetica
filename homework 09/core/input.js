@@ -1,6 +1,6 @@
 "use strict";
 
-class Input {
+class Input extends HtmlElement {
   onInput(fn) {}
 
   onFocus(fn) {}
