@@ -5,5 +5,7 @@ class Div extends HtmlElement {
     super();
   }
 
-  set onClick(fn) {}
+  set onClick(fn) {
+    this._target.firstElementChild.addEventListener('click', fn);
+  }
 }

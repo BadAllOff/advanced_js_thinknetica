@@ -33,7 +33,9 @@ class HtmlElement {
     this._target.firstElementChild.style.cssText = accumStyles.join('; ');
   }
 
-  _unrender() {}
+  _unrender() {
+    this._target.innerHTML = '';
+  }
   //задает шаблон в виде строки, механизм замены можно использовать любой,
   set template(str) {
     this._template = str;

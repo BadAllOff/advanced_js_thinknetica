@@ -1,27 +1,30 @@
-
-
 const sEl = new Div();
-sEl.template = `<div>{{output}}</div>`
+sEl.template = `<div>{{output}}</div>`;
 sEl.variables = {
-  output: 'Some text',
-  variable2: 'Another text'
-}
+  output: "Some text",
+  variable2: "Another text",
+};
 sEl.target = document.getElementById("container");
 
 sEl.styles = {
-  color: 'red',
-  'font-size': '15'
-}
+  color: "red",
+  "font-size": "15",
+};
 
 console.log(sEl._styles);
 
-
-
-
-
-
 sEl.render();
 
+sEl.onClick = () => {
+	console.log('test')
+}
+
+
+
+
+// setTimeout(() => {
+//   sEl.unrender();
+// }, 5000);
 
 
 
